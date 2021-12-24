@@ -30,6 +30,6 @@ it("Money transfer between foreign cards", () => {
   transfers.checkDebitAndReceiverCards("* 8217", "* 5085");
   transfers.checkDebitAmountAndTotalAmount("300 UAH", "389.33");
   transfers.checkDebitComission("89.33 UAH");
-  transfers.checktotalCurrency("UAH");
+  transfers.checkTotalCurrency("UAH");
   transfers.checkComment("Cypress test");
 });

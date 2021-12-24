@@ -46,10 +46,10 @@ export class Transfers {
             .should("have.text", comission)
      }
 
-     checktotalCurrency(currency){
-        cy.get('[data-qa-node="total"]')
-            .find("small")
-            .should("contain.text", currency)
+     checkTotalCurrency(currency) {
+         cy.get('[data-qa-node="total"]')
+             .find("small")
+             .should("contain.text", currency)
      }
 
      checkComment(comment){
