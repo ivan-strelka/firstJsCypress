@@ -3,7 +3,29 @@ import {mobileReplenishment} from "../support/pages/mobileReplenishment";
 import {transfers} from "../support/pages/transfers";
 import {basePage} from "../support/pages/basePage";
 
+beforeEach("setup success response with stub", () => {
+    cy.intercept("https://next.privat24.ua/api/p24/pub/confirm/check?", {
+        fixture: "confirmResponse/success.json",
+    });
+});
 
+//Example stub api response: state of archive: a, b, e
+it.skip("check success state of payment in the archive | public session", () => {
+    cy.intercept("https://next.privat24.ua/api/p24/pub/archive", {
+        fixture: "archiveResponse/success.json",
+    });
+    basePage.open("https://next.privat24.ua?lang=en");
+    archivePage.selectArchiveMenu();
+});
+
+//Example stub api response: state of archive: a, b, e
+it("check error state of payment in the archive | public session", () => {
+    cy.intercept("https://next.privat24.ua/api/p24/pub/archive", {
+        fixture: "archiveResponse/error.json",
+    });
+    basePage.open("https://next.privat24.ua?lang=en");
+    archivePage.selectArchiveMenu();
+});
 it("Replenishment of Ukrainian mobile phone number", () => {
     basePage.open("https://next.privat24.ua/mobile");
     mobileReplenishment.typePhoneNumber("686979712");
