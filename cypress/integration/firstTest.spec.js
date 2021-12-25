@@ -2,6 +2,7 @@
 import {mobileReplenishment} from "../support/pages/mobileReplenishment";
 import {transfers} from "../support/pages/transfers";
 import {basePage} from "../support/pages/basePage";
+import {archivePage} from "../support/pages/archive";
 
 beforeEach("setup success response with stub", () => {
     cy.intercept("https://next.privat24.ua/api/p24/pub/confirm/check?", {
@@ -25,8 +26,10 @@ it("check error state of payment in the archive | public session", () => {
     });
     basePage.open("https://next.privat24.ua?lang=en");
     archivePage.selectArchiveMenu();
+    cy.wait(2000).get('tbody').toMatchImageSnapshot(); // visual testing
+    cy.wait(2000).document().toMatchImageSnapshot(); // visual testing
 });
-it("Replenishment of Ukrainian mobile phone number", () => {
+it.skip("Replenishment of Ukrainian mobile phone number", () => {
     basePage.open("https://next.privat24.ua/mobile");
     mobileReplenishment.typePhoneNumber("686979712");
     basePage.typeAmount("1");
@@ -175,7 +178,6 @@ it("Next one example jsonplaceholder 2", () => {
 });
 
 
-//Mock and Stub
 
 
 
