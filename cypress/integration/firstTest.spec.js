@@ -71,7 +71,7 @@ it.skip("Example sending the POST request", () => {
 });
 
 //Example POST request
-it("Next one example the POST request", () => {
+it.skip("Next one example the POST request", () => {
     const requestBody = {
         name: "morpheus",
         job: "leader"
@@ -86,4 +86,28 @@ it("Next one example the POST request", () => {
     });
 
 });
+
+it("Next one example jsonplaceholder", () => {
+    fetch('https://jsonplaceholder.typicode.com/posts/1')
+        .then((response) => response.json())
+        .then((json) => console.log(json));
+});
+
+it("Next one example jsonplaceholder 2", () => {
+    fetch('https://jsonplaceholder.typicode.com/posts', {
+        method: 'POST',
+        body: JSON.stringify({
+            title: 'foo',
+            body: 'bar',
+            userId: 1,
+        }),
+        headers: {
+            'Content-type': 'application/json; charset=UTF-8',
+        },
+    })
+        .then((response) => response.json())
+        .then((json) => console.log(json));
+});
+
+
 
