@@ -177,6 +177,16 @@ it("Next one example jsonplaceholder 2", () => {
         .then((json) => console.log(json));
 });
 
+//Example VISUAL test with STUB response for archive
+it("check error state of payment in the archive | public session", () => {
+    cy.intercept("https://next.privat24.ua/api/p24/pub/archive", {
+        fixture: "archiveResponse/error.json",
+    });
+    basePage.open("https://next.privat24.ua?lang=en");
+    archivePage.selectArchiveMenu();
+
+    cy.wait(2000).get("tbody").toMatchImageSnapshot();
+});
 
 
 
